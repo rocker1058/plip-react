@@ -1,0 +1,126 @@
+.crop-image {
+    // max-height: 200px;
+    span.warning{
+        margin-bottom: 20px;
+        width: 100%;
+        background: #FCF8D0;
+        padding: 10px;
+        color: #0BA93C;
+        font-size:13px;
+    }
+    .form-control-file{
+        font-size: 13px;
+    }
+    h3{
+        font-size: 1.5rem;
+    }
+    .options .btn {
+        width:40px;
+        height:40px;
+        padding:0;
+        &.crop {
+            background-color: $primary;
+        }
+        &.trash{
+            background:$error;
+            border-color:$error;
+        }
+    }
+
+    .ReactCrop {
+        min-height: 200px;
+        max-height: 300px;
+    }
+
+    .ReactCrop__drag-handle {
+        background-color: #fff !important;
+        border-radius: 50% !important;
+    }
+    
+    .ReactCrop__crop-selection {
+        border-image-source:none !important;
+        border: 1px solid #fff !important;
+    }
+
+    .ReactCrop__image {
+        max-height: 100%;
+    }
+    
+    .cropGhost{
+        min-height: 56.25%;
+        padding-top: 56.25% !important;
+        background-color: #fff;
+        border: 1px dotted #E0E7FF;
+        border-radius: 2px;
+        margin-bottom: 15px;
+    }
+    
+    .croppedImage{
+        position: relative;
+        height: auto;
+    }
+    
+    .innerContCroppedImg {
+        padding-top: 75%;
+        overflow: hidden;
+    }
+    
+    .innerContCroppedImg img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    .croppedImage button{
+        width: 20px;
+        height: 20px;
+        padding: 0px;
+        position: absolute;
+        top: -5px;
+        right: -8px;
+        font-size: 1.3rem;
+    }
+    
+    .croppedImage button i{
+        position: relative;
+        top:-7px;
+    }
+    
+    .cropGhost .lblFileInptProfileImg {
+        height: 100%;
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        right: 0rem;
+        margin: 0rem;
+        z-index: 1;
+        opacity: 1;
+        text-align: center;
+        color: darken(#B0BAC9, 1%);
+    }
+    
+    .cropGhost .lblFileInptProfileImg i {
+        position: relative;
+        top: 32%;
+    }
+
+    .cropGhost .lblFileInptProfileImg span {
+        position: relative;
+        top: 36%;
+    }
+    
+    .cropGhost input[type="file"] {
+        height: 100%;
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        right: 0rem;
+        z-index: 10;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,105 @@
+.cliente{
+    .logo{
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+    }
+    background: #F0F0F7;
+    .cliente-top{
+        padding-top:15px;
+        -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.05);
+        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.05);
+        .cliente-info{
+            p{
+                font-size:13px;
+            }
+        }
+    }
+    &.margins{
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+    }
+}
+
+.newCompanyModal {
+	min-height: 80vh;
+}
+
+.customSwitch {
+    background-color: #fff;
+    border-radius: 18px;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    padding: 3px;
+    position: relative;
+    vertical-align: top;
+    width: 56px;
+}
+.customSwitch-input {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+}
+.customSwitch-label {
+    background: #E0E0E0 none repeat scroll 0 0;
+    border-radius: inherit;
+    display: block;
+    font-size: 10px;
+    height: inherit;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.15s ease-out 0s;
+}
+.customSwitch-label::before, .customSwitch-label::after {
+    line-height: 1;
+    margin-top: -0.5em;
+    position: absolute;
+    top: 50%;
+    transition: inherit;
+}
+
+.customSwitch-input:checked ~ .customSwitch-label {
+    background: #E0E0E0 none repeat scroll 0 0;
+}
+
+.customSwitch-handle {
+    background-color: red;
+    border-radius: 10px;
+    height: 18px;
+    left: 4px;
+    position: absolute;
+    top: 4px;
+    transition: left 0.15s ease-out 0s;
+    width: 18px;
+}
+.customSwitch-input:checked ~ .customSwitch-handle {
+    left: 35px;
+    background-color: $primary;
+}
+
+.card-image{
+    background-color: #DDDDDD;
+    position: relative;
+    .container-icon-trash{
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        .icon-trash{
+            color: #fff;
+            background: red;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+@media (min-width: 992px){
+    .cliente{
+        min-height: calc(100vh - 71px);
+    }
+}
+
+

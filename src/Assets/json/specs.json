@@ -1,0 +1,56 @@
+{
+	"categorias": {
+		"MO":"Motor",
+		"FR":"Frenos",
+		"SU":"Suspensión",
+		"DR":"Dirección",
+		"TR":"Transmisión",
+		"DI":"Diferenciales",
+		"EL":"Eléctrico"
+	},
+	"sistemas": {
+		"SuspensionTrasera": "Suspension Trasera",
+		"SuspensiónDelantera": "Suspensión delantera",
+		"SistemaRléctrico": "Sistema eléctrico",
+		"SistemaDeRefrigeración": "Sistema de refrigeración",
+		"SistemaDeFrenos": "Sistema de frenos",
+		"SistemaDeDirección": "Sistema de dirección",
+		"Motor": "Motor",
+		"LubricantesYFiltros": "Lubricantes y filtros",
+		"Llantas": "Llantas",
+		"Diferenciales": "Diferenciales",
+		"CajaDeVelocidadesYEmbrague": "Caja de velocidades y embrague",
+		"CabinaYTanquesDeCombustible": "Cabina y tanques de combustible"
+	},
+	"subsistemas": {
+		"SuspensionTrasera": "Suspension Trasera",
+		"SuspensionDelantera": "Suspension Delantera",
+		"Arranque": "Arranque",
+		"Alternador": "Alternador",
+		"Bateria": "Bateria",
+		"OtrosElectricidad": "Otros Electricidad",
+		"Refrigeracion": "Refrigeración",
+		"Frenos": "Frenos",
+		"Direccion": "Dirección",
+		"Inyección": "Inyección",
+		"Motor": "Motor",
+		"Turbo": "Turbo",
+		"Filtracion": "Filtración",
+		"LlantasYRuedas": "Llantas y Ruedas",
+		"Transmision": "Transmisión",
+		"Embrague": "Embrague",
+		"CajaVelocidades": "Caja Velocidades",
+		"Cabina": "Cabina"
+	},
+	"marcas": {
+		"Marca1": "Chevrolet-Foton-Hyundai-International-Kia",
+		"Marca2": "Chevrolet-Foton-Hyundai-International-Kenworth-Freightliner",
+		"Marca3": "Chevrolet-Foton-Hyundai-International-Kenworth"
+	},
+	"lineas": {
+		"Linea1": "Camión liviano hasta NPR o similar línea N de Chevrolet",
+		"Linea2": "Sencillo-Chevrolet Línea F-Freightliner M2-C70-Kodiak",
+		"Linea3": "Patineta-Media Mula-Freightliner-FVR-International",
+		"Linea4": "Tractocamión"
+	}
+}

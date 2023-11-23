@@ -1,0 +1,23 @@
+.login{
+    .loginForm{
+        img{
+            max-width:160px;
+        }
+    }
+    h1{
+        font-size: 2rem;
+        margin-top: 60px;
+    }
+    p{
+        font-size:15px;
+    }
+    .homebg{
+        position:fixed;
+        right:0;
+        height:100%;
+    }
+    .forgot-password{
+        font-size:13px;
+        color:$primary;
+    }
+}

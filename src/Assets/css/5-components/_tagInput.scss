@@ -1,0 +1,60 @@
+.tagInput{
+    position: relative;
+    .tags {
+        background: #fff;
+        border: 1px solid #E0E7FF;
+        border-radius: .25rem;
+        margin-bottom: 5px;
+        overflow: hidden;
+        ul{
+            margin:0;
+            padding:0;
+            li{
+                list-style: none;
+            }
+        }
+        .tag {
+            color: #fff;
+            font-weight: bold;
+            background: #ddd;
+            float: left;
+            padding: 9px 10px;
+            border-radius: 10em;
+            margin: 5px;
+            font-size:0.7rem;
+            span.tagtext{
+                margin-top:2px;
+                font-size: 0.8rem;
+                letter-spacing: 0.05rem;
+                font-weight: 500;
+            }
+            button {
+                background: transparent;
+                border: 0;
+                cursor: pointer;
+                margin-left: 8px;
+                height: 18px;
+                span{
+                    position:relative;
+                    top: -3px;
+                }
+            }
+        }
+        .form-control{
+            width:120px;
+            border:none;
+            &:focus{
+                border:none;
+            }
+        }
+    }
+    code {
+        font-size: 12px;
+        background: #FCF8D0;
+        color: $primary;
+        display: inline-block;
+        font-family: courier;
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+}

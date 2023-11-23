@@ -1,0 +1,192 @@
+$width: 550px;
+$main-color: #F44336;
+$secondary-color: white;
+$main-color: #333;
+$secondary-color: #2196f3;
+
+.custom-input {
+    position: relative;
+    .error {
+        color: $error;
+        font-size: 0.7em;
+    }
+    label {
+        position: absolute;
+        top: 10px;
+        left: 25px;
+        color: $gray-500;
+        font-size: 13px;
+        cursor: text;
+        transition: .25s ease;
+        color:$input-label-color;
+    }
+    input, select, textarea{
+        &:valid {
+            ~ label {
+              top: 10px;
+              font-size: 13px;
+              color: $gray-500;
+            }
+        }
+        &:focus, &.valid {
+            z-index:0;
+            outline: none;
+            box-shadow: none;
+            ~ label {
+                top: -20px;
+                color: $primary;
+                font-weight:600;
+                font-size:12px;
+            }
+        }
+        &:focus {
+            border-color:$primary;
+            -webkit-box-shadow: none;
+            box-shadow:none;
+        }
+    
+        // Stop Chrome's hideous pale yellow background on auto-fill
+        
+        &:-webkit-autofill {
+            // -webkit-box-shadow: 0 0 0px 1000px $main-color inset;
+            // box-shadow: 0 0 0px 1000px $main-color inset;
+            // -webkit-text-fill-color: white !important;
+        }
+
+        &.is-invalid {
+            border-color: $error;
+        }
+    }
+
+    &.date-input{
+        &.valid{
+            label {
+                top: -20px;
+                color: $secondary;
+                font-weight:600;
+                font-size:12px;
+            }
+        }
+    }
+
+    &.phone-input {
+        label{
+            left:54px;
+            color: $gray-500;
+        }
+        .rrui__input-field {
+            border-bottom: none;
+        }
+    
+        .rrui__input{
+            height: auto;
+        }
+    
+        &.valid {
+            z-index:0;
+            outline: none;
+            box-shadow: none;
+            border-color:$third;
+            label {
+                top: -20px;
+                left: 25px;
+                color: $secondary;
+                font-weight:600;
+                font-size:12px;
+            }
+        }
+        
+        .react-phone-number-input{
+            @extend .form-control;
+            border-radius: 5px;
+            &:valid {
+                ~ label {
+                    top: 10px;
+                    font-size: 13px;
+                    color: $gray-500;
+                }
+            }
+            &:focus, &.react-phone-number-input--focus {
+                z-index:0;
+                outline: none;
+                box-shadow: none;
+                border-color:$third;
+                ~ label {
+                    top: -20px;
+                    left: 25px;
+                    color: $secondary;
+                    font-weight:600;
+                    font-size:12px;
+                }
+            }
+        
+            // Stop Chrome's hideous pale yellow background on auto-fill
+            
+            &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px $main-color inset;
+            box-shadow: 0 0 0px 1000px $main-color inset;
+            -webkit-text-fill-color: white !important;
+            // border-bottom-color: rgba(white, .5);
+            }
+        }
+        
+    
+        .react-phone-number-input__icon{
+            overflow: hidden;
+            height:20px;
+            width: 20px;
+            border: none;
+            svg {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    
+        .react-phone-number-input__country--native {
+            align-items: initial;
+        }
+    
+        .react-phone-number-input__input{
+            border: none;
+            height: auto;
+            color: $gray-700;
+            background:transparent;
+            position:relative;
+            z-index:2;
+            font-size: 0.8rem;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+    
+        .error{
+            margin-top: .25rem;
+            width: 100%;
+        }
+    }
+    
+    &.phone-error{
+        .react-phone-number-input {
+            border-color: $red;
+        }
+    }
+
+    &.custom-suggest{
+        & > div:first-of-type {
+            width: 100%;
+        }
+
+        .suggestion {
+            height: 45px;
+            font-size:13px;
+            padding: 12px 15px;
+            &.highlighted {
+                background-color: $primary;
+                color: $white;
+                cursor:pointer;
+            }
+        }
+    }
+}
+
+
+

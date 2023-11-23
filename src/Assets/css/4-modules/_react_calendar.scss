@@ -1,0 +1,18 @@
+.react-calendar {
+    border: 1px solid #E0E7FF !important;
+    font-family: 'Raleway',sans-serif !important;
+    position:absolute;
+    z-index: 1000;
+    padding:20px;
+}
+
+.react-calendar__tile--active {
+    background: $primary !important;
+    color: white;
+    border-radius: 25px;
+}
+
+.react-calendar__navigation button{
+    font-weight: 800;
+    text-transform: uppercase;
+}

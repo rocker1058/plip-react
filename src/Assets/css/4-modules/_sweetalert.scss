@@ -1,0 +1,52 @@
+// https://sweetalert.js.org/docs/#theming
+
+.swal-title{
+    font-family: 'Source Sans Pro',sans-serif;
+    font-size: 1.8rem;
+    font-weight:300;
+    color:$black;
+}
+
+.swal-text{
+    font-size:0.9rem;
+    color:$black;
+}
+
+.swal-button {
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    line-height: 1.5;
+    border-radius: .25rem;
+    font-size: 13px;
+    -webkit-transition: .3s;
+    transition: .3s;
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+	box-shadow: 0 2px 10px rgba(0,0,0,.2);
+}
+
+.swal-button--confirm{
+    background: $primary;
+    &:hover, &:focus, &:active{
+        background: darken($primary, 5%);
+	}
+}
+
+.sweeterror{
+    .swal-button--confirm{
+        background: $red;
+        &:hover, &:focus, &:active{
+            background: darken($red, 5%);
+        }
+    }
+}
+
+.swal-footer {
+    text-align: center;
+}

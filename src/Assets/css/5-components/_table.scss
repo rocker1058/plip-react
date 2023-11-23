@@ -1,0 +1,218 @@
+
+.table{
+    margin-bottom:0;
+    .form-check-input {
+        position: relative;
+        margin-top: .3rem;
+        margin-left: 0rem;
+    }
+    th, td{
+        text-align: center;
+    }
+    thead{
+        tr{
+            font-size: 11px;
+            margin-bottom: 5px;
+            color: #B0BAC9;
+            letter-spacing: .05rem;
+            text-transform: uppercase;
+            th{
+                font-weight:500;
+                border-top:none;
+                border-bottom: none;
+                &.t-border-left{
+                    border-left:1px solid #E0E7FF;
+                }
+            }
+        }
+    }
+    tbody{
+        background:#fff;
+        tr{
+            font-size:12px;
+            td{
+                vertical-align: middle;
+                .dropdown-toggle{
+                    box-shadow:none;
+                }
+                .dropdown-toggle::after{
+                    display:none;
+                }
+                .canceledInvoice{
+                    background-color: #F44336;
+                    padding: 7px 10px;
+                    border-radius: 25px;
+                    color: #fff;
+                }
+                .dropdown-menu.show{
+                    transform: translate3d(-122px, 33px, 0) !important;
+                    font-size:13px;
+                }
+                .logo{
+                    width:40px;
+                    height:auto;
+                }
+                &.clickable{
+                    a{
+                        color: $black;
+                        font-weight:700;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                &.warning{
+                    a{
+                        color:$red;
+                        text-decoration: underline;
+                        font-weight:400;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                    button{
+                        background:transparent;
+                        color:$red;
+                        border:none;
+                        box-shadow:none;
+                    }
+                }
+                &.success{
+                    color:$primary;
+                    font-weight:bold;
+                }
+                &.selectable{
+                    a{
+                        color:$black;
+                        text-decoration: underline;
+                        font-weight:400;
+                        cursor:pointer;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+                &.t-border-left{
+                    border-left:1px solid #E0E7FF;
+                }
+                .status{
+                    width: 10px;
+                    height: 10px;
+                    position: relative;
+                    border-radius: 50px;
+                    margin-left: 47%;
+                    top: 8px;
+                }
+                .enabled{
+                    background-color: #0BA93C;
+                }
+                .disabled{
+                    background-color: #c9c9c9;
+                }
+                .canceled{
+                    background-color: #F44336;
+                }
+                .finished{
+                    background-color: #fffb01;
+                }
+            }
+        }
+    }
+}
+
+.body-tabla{
+    background: #F0F0F7
+}
+
+.emptytable{
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    margin-bottom:20px;
+    height: calc(100vh - 285px);
+    padding-top: 80px;
+    .icon{
+        text-align: center;
+        font-size: 60px;
+        color: #0BA93C;
+        border: 3px solid #0BA93C;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+    }
+    h5{
+        font-size: 12px;
+        margin-top: 15px;
+        color: #B0BAC9;
+    }
+    p{
+        font-size:13px;
+    }
+}
+
+.more{
+    padding:0 15px 30px;
+    .col-12{
+        background: #fff;
+        padding:15px 0;
+    }
+}
+
+.fixed-header-table{
+    border: 1px solid rgba(0,0,0,.125);
+    tbody {
+        display:block;
+        height:200px;
+        overflow:auto;
+    }
+    thead, tbody tr {
+        display:table;
+        width:100%;
+        table-layout:fixed;/* even columns width , fix width of table too*/
+    }
+    thead {
+        width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+    }
+}
+
+.custom-table{
+    .header-table{
+        background-color: #fff;
+    }
+    .table-responsive{
+        min-height: 500px;
+    }
+    
+}
+
+.jobs-table{
+    tr{
+        cursor:pointer;
+        td{
+            font-weight:500;
+            cursor:pointer;
+        }
+        &:hover{
+            cursor:pointer;
+            td{
+                color:#2E5BFF;
+                cursor:pointer;
+            }
+        }
+    }
+}
+
+.total-table{
+    tr{
+        border:none;
+        td{
+            font-size:0.9rem;
+            border:none;
+            
+        }
+    }
+}

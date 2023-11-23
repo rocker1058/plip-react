@@ -1,0 +1,342 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Template for deploying base resources
+Metadata: 
+    AWS::CloudFormation::Interface: 
+        ParameterGroups:
+        -   
+            Label:
+                default: "General"
+            Parameters:
+                - ProjectName
+        - 
+            Label: 
+                default: "Github"
+            Parameters: 
+                - GitHubUser
+                - GitHubRepo
+                - GitHubBranch
+                - GitHubToken
+        -   Label:
+                default: "CloudFront"
+            Parameters:
+                - DistributionId
+                - TestDistributionId
+
+        ParameterLabels: 
+            ProjectName:
+                default: "Name"
+            GitHubUser: 
+                default: "Username"
+            GitHubRepo: 
+                default: "Repository"
+            GitHubBranch: 
+                default: "Branch"
+            GitHubToken: 
+                default: "Token"
+            DistributionId:
+                default: "Distribution id"
+            TestDistributionId:
+                default: "Test distribution id"
+
+Parameters:
+    ProjectName:
+        Default: Plip
+        Type: String
+    GitHubRepo:
+        Type: String
+
+    GitHubBranch:
+        Type: String
+
+    GitHubToken:
+        Type: String
+        NoEcho: true
+        Description: https://github.com/settings/tokens
+
+    GitHubUser:
+        Type: String
+
+    DistributionId:
+        Type: String
+        Description: The distribution id in the web cloudfront deployment
+    TestDistributionId:
+        Type: String
+        Description: The distribution id in the web cloudfront deployment
+
+Resources:
+    # # ########      WebApp      ########
+    FrontEnd:
+        Type: AWS::S3::Bucket
+        DeletionPolicy: Retain
+
+    TestFrontEnd:
+        Type: AWS::S3::Bucket
+        DeletionPolicy: Retain
+    
+    WebCodeBuildServiceRole:
+        Type: AWS::IAM::Role
+        Properties:
+            Path: /
+            AssumeRolePolicyDocument:
+                Version: 2012-10-17
+                Statement:
+                - 
+                    Effect: Allow
+                    Principal:
+                        Service: codebuild.amazonaws.com
+                    Action: sts:AssumeRole
+            Policies:
+                - 
+                    PolicyName: root
+                    PolicyDocument:
+                        Version: 2012-10-17
+                        Statement:
+                        - 
+                            Resource: "*"
+                            Effect: Allow
+                            Action:
+                            - logs:CreateLogGroup
+                            - logs:CreateLogStream
+                            - logs:PutLogEvents
+                            - cloudfront:CreateInvalidation
+                        - 
+                            Resource: 
+                                - !Sub arn:aws:s3:::${FrontEnd}/*
+                                - !Sub arn:aws:s3:::${TestFrontEnd}/*
+                                - !Join
+                                    - ''
+                                    -
+                                        - 'arn:aws:s3:::'
+                                        - Fn::ImportValue:
+                                            !Sub "${ProjectName}Bucket"
+                                        - /*
+                               
+                            Effect: Allow
+                            Action:
+                            - s3:GetObject
+                            - s3:GetObjectAcl
+                            - s3:PutObject
+                            - s3:PutObjectAcl
+                            - s3:GetObjectVersion
+
+    WebBuild:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Artifacts:
+                Type: CODEPIPELINE
+            Source:
+                Type: CODEPIPELINE
+                BuildSpec: |
+                    version: 0.2
+                    phases:
+                        build:
+                            commands:
+                                - npm install
+                                - npm run buildCss
+                                - npm run build
+                        post_build:
+                            commands:
+                                - aws s3 cp --acl public-read --recursive build/ s3://$BUCKET
+                                - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+            Environment:
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: aws/codebuild/nodejs:8.11.0
+                Type: LINUX_CONTAINER
+                EnvironmentVariables:
+                -
+                    Name: AWS_DEFAULT_REGION
+                    Value: !Ref AWS::Region
+                -
+                    Name: BUCKET
+                    Value: !Ref FrontEnd
+                -   
+                    Name: DISTRIBUTION_ID
+                    Value: !Ref DistributionId
+                - 
+                    Name: REACT_APP_AWS_COGNITO_POOLID
+                    Value:
+                        Fn::ImportValue:
+                            !Sub "${ProjectName}EstablishmentPoolProd"
+                -   
+                    Name: REACT_APP_AWS_COGNITO_CLIENTID
+                    Value:
+                        Fn::ImportValue:
+                            !Sub "${ProjectName}EstablishmentClientProd"
+                -
+                    Name: REACT_APP_GATEWAY
+                    Value: https://api.plip.world/api/establishments
+                -   
+                    Name: React_APP_STAGE
+                    Value: Production
+
+            Name: !Join
+                - '-'
+                - 
+                    -  PlipWeb
+                    -  Build
+            Cache: 
+                Type: S3
+                Location: 
+                    !Join
+                        - ''
+                        - 
+                            - Fn::ImportValue:
+                                !Sub "${ProjectName}Bucket"
+                            - !Join
+                                - '/'
+                                - 
+                                    - ''
+                                    - build
+                                    - PlipWeb
+            ServiceRole: !Ref WebCodeBuildServiceRole
+    
+    TestWebBuild:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Artifacts:
+                Type: CODEPIPELINE
+            Source:
+                Type: CODEPIPELINE
+                BuildSpec: |
+                    version: 0.2
+                    phases:
+                        build:
+                            commands:
+                                - npm install
+                                - npm run buildCss
+                                - npm run build
+                        post_build:
+                            commands:
+                                - aws s3 cp --acl public-read --recursive build/ s3://$BUCKET
+                                - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+            Environment:
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: aws/codebuild/nodejs:8.11.0
+                Type: LINUX_CONTAINER
+                EnvironmentVariables:
+                -
+                    Name: AWS_DEFAULT_REGION
+                    Value: !Ref AWS::Region
+                -
+                    Name: BUCKET
+                    Value: !Ref TestFrontEnd
+                -   
+                    Name: DISTRIBUTION_ID
+                    Value: !Ref TestDistributionId
+                - 
+                    Name: REACT_APP_AWS_COGNITO_POOLID
+                    Value:
+                        Fn::ImportValue:
+                            !Sub "${ProjectName}EstablishmentPoolTest"
+                -   
+                    Name: REACT_APP_AWS_COGNITO_CLIENTID
+                    Value:
+                        Fn::ImportValue:
+                            !Sub "${ProjectName}EstablishmentClientTest"
+                -
+                    Name: REACT_APP_GATEWAY
+                    Value: https://api.plip.world/test/establishments
+                -   
+                    Name: React_APP_STAGE
+                    Value: Test
+            Name: !Join
+                - '-'
+                - 
+                    -  PlipWeb
+                    -  TestBuild
+            Cache: 
+                Type: S3
+                Location: 
+                    !Join
+                        - ''
+                        - 
+                            - Fn::ImportValue:
+                                !Sub "${ProjectName}Bucket"
+                            -  !Join
+                                - '/'
+                                - 
+                                    - ''
+                                    - build
+                                    - TestPlipWeb
+            ServiceRole: !Ref WebCodeBuildServiceRole
+    
+    WebPipeline:
+        Type: AWS::CodePipeline::Pipeline
+        Properties:
+            RoleArn:
+                Fn::ImportValue:
+                    !Sub "${ProjectName}CodePipelineServiceRoleArn"
+            RestartExecutionOnUpdate: false
+            ArtifactStore:
+                Type: S3
+                Location:
+                    Fn::ImportValue:
+                        !Sub "${ProjectName}Bucket"
+            Stages:
+                -   #Retrieve the source code from cannedhead-services repository
+                    Name: Source
+                    Actions:
+                        - 
+                            Name: Source
+                            ActionTypeId:
+                                Category: Source
+                                Owner: ThirdParty
+                                Version: 1
+                                Provider: GitHub
+                            Configuration:
+                                Owner: !Ref GitHubUser
+                                Repo: !Ref GitHubRepo
+                                Branch: !Ref GitHubBranch
+                                OAuthToken: !Ref GitHubToken
+                                PollForSourceChanges: false
+                            OutputArtifacts:
+                                - Name: src
+                            RunOrder: 1
+                -   #Build the authorizer and upload templates in parallel
+                    Name: BuildTest
+                    Actions:
+                        - 
+                            Name: Web-Build
+                            ActionTypeId:
+                                Category: Build
+                                Owner: AWS
+                                Version: 1
+                                Provider: CodeBuild
+                            Configuration:
+                                ProjectName: !Ref TestWebBuild
+                            InputArtifacts:
+                                - Name: src
+                            RunOrder: 1
+                - 
+                    Name: Approve
+                    Actions:
+                        - 
+                            InputArtifacts: []
+                            Name: SendToProduction
+                            ActionTypeId:
+                                Category: Approval
+                                Owner: AWS
+                                Version: '1'
+                                Provider: Manual
+                            OutputArtifacts: []
+                            Configuration: {}
+                            RunOrder: 1
+                -   #Build the authorizer and upload templates in parallel
+                    Name: BuildProduction
+                    Actions:
+                        - 
+                            Name: Web-Build
+                            ActionTypeId:
+                                Category: Build
+                                Owner: AWS
+                                Version: 1
+                                Provider: CodeBuild
+                            Configuration:
+                                ProjectName: !Ref WebBuild
+                            InputArtifacts:
+                                - Name: src
+                            RunOrder: 1
+
+    #########      End WebApp      ########

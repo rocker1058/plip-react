@@ -1,0 +1,92 @@
+.sidebar{
+    position: fixed;
+    top: 60px;
+    z-index: 1001;
+    height:100%;
+    background:$primary;
+    max-width: 220px;
+    transform:translateX(-100%);
+    transition: .7s;
+    &.open{
+        transform:translateX(0%);
+    }
+
+    .sidebarlogo{
+        background: rgba(0,0,0,0.1);
+        height: 59px;
+        padding-top: 7px;
+        .nombre, .cargo{
+            font-size:12px;
+            width:100%;
+            float:left;
+            line-height: 1.1;
+        }
+        .nombre{
+            color:$white;
+            margin-bottom:4px;
+        }
+        .cargo{
+            color:#BCBCCB;
+        }
+    }
+    ul{
+        li{
+            position:relative;
+            padding:10px 0;
+            text-align:center;
+            a{
+                color:#fff;
+                font-size:13px;
+                font-weight:600;
+                float:left;
+                span{
+                    position: relative;
+                    top: -3px;
+                }
+                .plip-icon{
+                    content: '';
+                    height: 20px;
+                    width: 20px;
+                    margin-bottom: 0px;
+                    background: url(https://s3.amazonaws.com/plip-assets-1o6khezd40w70/img/icons%402x.png);
+                    background-size: 100% auto;
+                    display: inline-block;
+                    margin: 0px 6px 0 0;
+                    top: 2px;
+                    position: relative;
+                    &.establecimientos{
+                        background-position: 0 -85px;
+                    }
+                    &.usuarios {
+                        background-position: 0 -127px;
+                    }
+                }
+            }
+            &.active{
+                background-color:rgba(0,0,0,0.1);
+            }
+            &.active:after{
+                content:'';
+                display:block;
+                position: absolute;
+                top:0;
+                left:0;
+                width:4px;
+                height:100%;
+                background-color:#fff;
+                -webkit-border-top-right-radius: 10px;
+                -webkit-border-bottom-right-radius: 10px;
+                -moz-border-radius-topright: 10px;
+                -moz-border-radius-bottomright: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .sidebar{
+        transform:translateX(0%);
+    }
+}

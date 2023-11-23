@@ -1,0 +1,117 @@
+.filter-search {
+    .input-holder > div:first-of-type {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    input, .btn-search, select {
+        margin: 15px 0 2px;
+        height: 45px;
+    }
+
+    .search-tags {
+        margin-top: 10px;
+    }
+
+    .suggestion {
+        height: 45px;
+        font-size:13px;
+        padding: 12px 15px;
+        &.highlighted {
+            background-color: $primary;
+            color: $white;
+            cursor:pointer;
+        }
+    }
+
+    .tag {
+        text-align: center;
+        padding: 0.3em;
+        margin: 3px 15px;
+
+        .tag-close {
+            cursor: pointer
+        }
+    }
+
+    .area{
+        background-color: #6b96c7;
+        i, span {
+            color: white;
+        }
+    }
+    .class{
+        background-color: #90b0d5;
+        i, span {
+            color: white;
+        }
+    }
+
+    .time {
+        background-color: rgba(225, 228, 21, 0.5);
+        i, span {
+            color: white;
+        }
+    }
+
+    .city {
+        background-color: rgb(70, 102, 187);
+        i, span {
+            color: white;
+        }
+    }
+
+    .study-level{
+        background-color: rgb(64, 224, 126);
+        i, span {
+            color: white;
+        }
+    }
+
+    .search{
+        background-color: #467cb9;
+        i, span {
+            color: white;
+        }
+    }
+
+    //     /* Search User */
+    // .search-user-list {
+    //     background-color: white;
+    //     color: black;
+    //     padding-left: 0.6rem;
+    //     padding-right: 1rem;
+    // }
+
+    // .search-user-list.highlighted {
+    //     background-color: #E51943;
+    //     color: white;
+    // }
+
+    // .search-user-list a {
+    //     width: 100%;
+    //     display: block;
+    //     padding: 10px;
+    //     color: inherit;
+    //     text-decoration: none;
+    // }
+
+    // .search-user-list img {
+    //     width:30px;
+    //     height: 30px;
+    //     margin-right: 10px;
+    //     border: 1px solid #E51943;
+    //     border-radius:50%;
+    // }
+}
+.body-filters{
+    background-color: #fff;
+    padding: 20px 10px;
+}
+.quantityPaperSaved{
+    background-color: #F0F0F7;
+    padding: 10px 0;
+}

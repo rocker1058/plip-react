@@ -1,0 +1,39 @@
+.rc-steps-item-process .rc-steps-item-icon {
+	background: $primary;
+	border-color: $primary;
+}
+
+.rc-steps-item-finish .rc-steps-item-icon {
+	border-color: $primary;
+}
+
+.rc-steps-item-finish .rc-steps-item-tail:after, .rc-steps-item-finish .rc-steps-item-title:after {
+	background-color: $primary;
+}
+
+.rc-steps-item-container:focus {
+	outline: none;
+}
+
+.step-error {
+	.rc-steps-item-icon {
+		border-color: $error;
+		background-color: $error;
+	}
+	.rc-steps-item-title {
+		color: $error;
+	}
+}
+
+.step-completed {
+	.rc-steps-item-icon {
+		border-color: $primary;
+		background-color: $primary;
+		.rc-steps-icon {
+			color: white;
+		}
+	}
+	.rc-steps-item-title {
+		color: $primary;
+	}
+}

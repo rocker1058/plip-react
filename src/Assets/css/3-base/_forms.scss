@@ -1,0 +1,25 @@
+.form-control{
+    border-color:$lightblue;
+    height: 45px;
+    font-size: 13px;
+    &:focus, &:active{
+        border-color:$primary;
+        box-shadow:none;
+    }
+}
+
+label, .col-form-label{
+    font-size:12px;
+    margin-bottom:5px;
+    color:#B0BAC9;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+}
+
+@media (min-width: 576px){
+    label, .col-form-label{
+        padding: 5px 0 0;
+        margin-bottom: 0;
+    }
+}

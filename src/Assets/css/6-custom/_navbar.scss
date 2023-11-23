@@ -1,0 +1,309 @@
+// Burger parts
+//
+// (---) top    -> &::before
+// [---] middle -> &
+// (---) bottom -> &::after
+
+
+// Vendor prefixes
+$sass-burger-add-vendor-prefixes: true !default;
+
+// Burger
+@mixin burger($width: 18px, $height: 2px, $gutter: 2px, $color: #000, $border-radius: 0, $transition-duration: .3s) {
+    $burger-height: $height !global;
+    $burger-gutter: $gutter !global;
+
+    position: relative;
+    margin-top: $height + $gutter;
+    margin-bottom: $height + $gutter;
+
+    @if $sass-burger-add-vendor-prefixes {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    user-select: none;
+
+    // 1. Fixes jagged edges in Firefox, see issue #10.
+    &, &::before, &::after {
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        outline: 1px solid transparent; // 1
+        @if $border-radius != 0 {
+            border-radius: $border-radius;
+        }
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-property: background-color, -webkit-transform;
+            -moz-transition-property: background-color, -moz-transform;
+            -o-transition-property: background-color, -o-transform;
+        }
+        transition-property: background-color, transform;
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-duration: $transition-duration;
+            -moz-transition-duration: $transition-duration;
+            -o-transition-duration: $transition-duration;
+        }
+        transition-duration: $transition-duration;
+    }
+
+    &::before, &::after {
+        position: absolute;
+        content: "";
+    }
+
+    &::before {
+        top: -($height + $gutter);
+    }
+
+    &::after {
+        width: $width*.75;
+        top: $height + $gutter;
+    }
+}
+
+
+// Select parts of the burger
+@mixin burger-parts {
+    &, &::before, &::after {
+        @content;
+    }
+}
+
+@mixin burger-top {
+    &::before {
+        @content;
+    }
+}
+
+@mixin burger-middle {
+    & {
+        @content;
+    }
+}
+
+@mixin burger-bottom {
+    &::after {
+        @content;
+    }
+}
+
+
+// Burger animations
+@mixin burger-to-cross($color: auto) {
+    & {
+        background-color: transparent;
+    }
+    @if ($color != auto) {
+        &::before, &::after {
+            background-color: $color;
+        }
+    }
+    &::before {
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -o-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+        }
+        transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+    }
+    &::after {
+        width:18px;
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -moz-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -ms-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -o-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+        }
+        transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+    }
+}
+
+
+/*  MIXINS
+========================================== */
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+       -moz-transform: $transform;
+        -ms-transform: $transform;
+         -o-transform: $transform;
+            transform: $transform;
+}
+  
+@mixin transition($transition) {
+-webkit-transition: #{$transition};
+    -moz-transition: #{$transition};
+        -o-transition: #{$transition};
+        transition: #{$transition};
+}
+  
+@mixin transition-delay($transition-delay) {
+-webkit-transition-delay: #{$transition-delay};
+    -moz-transition-delay: #{$transition-delay};
+        -o-transition-delay: #{$transition-delay};
+        transition-delay: #{$transition-delay};
+}
+
+
+.navbar{
+    height:60px;
+    background:$white;
+    border-bottom: 1px solid #F0F0F7;
+    .burger {
+        position:relative;
+        width: 35px;
+        height: 40px;
+        border-radius: 4px;
+        z-index: 10;
+        top:2px;
+        span {
+          @include burger(18px, 2px, 3px, #BFC5D2); // gray
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-left: -15px;
+          margin-top: -1.5px;
+        }
+        
+        &.clicked {
+          span {
+            @include burger-to-cross;
+            
+            &:before, &:after {
+              background-color: #BFC5D2;
+            }
+          }
+        }
+        
+        &:hover {
+          cursor: pointer;
+        }
+    }
+
+    .logo{
+        width:100px;
+        margin-right: 51%;
+    }
+
+    .searchForm{
+        min-width:320px;
+    }
+
+    .nav-options{
+        margin:0;
+        li{
+            padding:10px 5px;
+            a{
+                position:relative;
+                .dot{
+                    position:absolute;
+                    top:2;
+                    right:0;
+                    background:$primary;
+                    content: '';
+                    width:4px;
+                    height:4px;
+                    border-radius:25px;
+                }    
+            }
+            &.settings{
+                padding: 0;
+                font-size:13px;
+                a{
+                    color: #4D4F5C;
+                }
+                img{
+                    width:30px;
+                    height:auto;
+                    margin-right:10px;
+                    border-radius:50%;
+                }
+                .dropdown-menu {
+                    top: 49px;
+                    font-size: 13px;
+                }
+                .credit{
+                    color: #5EFCE8; 
+                }
+            }
+        }
+    }
+
+    h1{
+        text-transform:uppercase;
+        margin-bottom:10px;
+    }
+    .navbar-toggler{
+        border-color:transparent;
+        img{
+            width:30px;
+            height:auto;
+            border-radius:50%;
+            &:focus{
+                color:$white;
+                border:1px solid $primary;
+            }
+        }
+    }
+
+    .dropdown-toggle::after {
+        top: 2px;
+        position: relative;
+        right: -1px;
+    }
+    .dropdown-menu {
+        top: 44px;
+        border-radius:2px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-item.active, .dropdown-item:active {
+        color: $white;
+        text-decoration: none;
+        background-color: $primary;
+    }
+    .menu-navbar{
+        left: -60px;
+    }
+}
+.navbar-light .navbar-nav .nav-link{
+    font-size:13px;
+}
+
+@media (max-width: 992px){
+    .navbar-collapse{
+        background: $black;
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        top: 57px;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 360px){
+    .navbar .nav-options li {
+        padding: 10px 8px;
+    }
+}
+
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0.9rem;
+        padding-left: 0.9rem;
+    }
+    .navbar{
+        .burger{
+            display:none;
+        }
+        .logo{
+            width:100px;
+            margin-right: 55px;
+            margin-left: 40px;
+        }
+    }
+}

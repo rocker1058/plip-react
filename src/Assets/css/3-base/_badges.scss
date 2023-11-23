@@ -1,0 +1,27 @@
+.badge {
+    display: inline-block;
+    padding: 10px 1.4em;
+    font-size: 10px;
+    border-radius: 0.5em;
+    font-weight: 500;
+    margin-right: 1px;
+    &.badge-secondary{
+        background: #65617D;
+    }
+    &.badge-primary{
+        background: #2E5BFF;
+    }
+    &.badge-recibido{
+        background: #2952e5;
+        color: #fff;
+    }
+    &.badge-info{
+        background: #00F0F1;
+    }
+    &.badge-danger{
+        background: #ee5050;
+    }
+    &.badge-success{
+        background: #199E50;
+    }
+}

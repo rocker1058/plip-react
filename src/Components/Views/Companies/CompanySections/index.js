@@ -1,0 +1,5 @@
+export { default as GeneralInformation } from './GeneralInformation'
+export { default as ContactInformation } from './ContactInformation'
+export { default as InvoiceInformation } from './InvoiceInformation'
+export { default as CommercialInformation } from './CommercialInformation'
+export { default as PLIPInformation } from './PliPInformation'

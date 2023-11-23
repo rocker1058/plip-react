@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+  <g id="filtroIcon" transform="translate(-1026 -535)">
+    <circle id="Elipse_1" data-name="Elipse 1" cx="45" cy="45" r="45" transform="translate(1026 535)" fill="#f0f0f7"/>
+    <g id="filter_alt_black_24dp" transform="translate(1047.934 556.934)">
+      <path id="Trazado_6" data-name="Trazado 6" d="M0,0H46.133m0,46.133H0" fill="none"/>
+      <path id="Trazado_7" data-name="Trazado 7" d="M4.445,7.095C8.328,12.073,15.5,21.3,15.5,21.3V32.833a1.928,1.928,0,0,0,1.922,1.922h3.844a1.928,1.928,0,0,0,1.922-1.922V21.3S30.337,12.073,34.22,7.095A1.918,1.918,0,0,0,32.7,4H5.964A1.918,1.918,0,0,0,4.445,7.095Z" transform="translate(3.724 3.689)" fill="#2aa93d"/>
+      <path id="Trazado_8" data-name="Trazado 8" d="M0,0H46.133V46.133H0Z" fill="none"/>
+    </g>
+  </g>
+</svg>
